@@ -1,10 +1,10 @@
 package com.github.chuross.viewmodelargs.compiler.extention
 
 import com.github.chuross.viewmodelargs.annotation.Argument
-import com.github.chuross.viewmodelargs.annotation.ViewModelArgs
+import com.github.chuross.viewmodelargs.annotation.ViewModelWithArgs
 import javax.lang.model.element.Element
 
-val Element.isViewModelArgs: Boolean get() = getAnnotation(ViewModelArgs::class.java) != null
+val Element.isViewModelArgs: Boolean get() = getAnnotation(ViewModelWithArgs::class.java) != null
 
 val Element.isArgument: Boolean get() = getAnnotation(Argument::class.java) != null
 

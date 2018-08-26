@@ -1,7 +1,7 @@
 package com.github.chuross.viewmodelargs.compiler
 
 import com.github.chuross.viewmodelargs.annotation.Argument
-import com.github.chuross.viewmodelargs.annotation.ViewModelArgs
+import com.github.chuross.viewmodelargs.annotation.ViewModelWithArgs
 import com.github.chuross.viewmodelargs.compiler.processors.BuilderProcessor
 import com.google.auto.service.AutoService
 import java.io.PrintWriter
@@ -36,7 +36,7 @@ class ViewModelArgsProcessor : AbstractProcessor() {
 
     override fun getSupportedAnnotationTypes(): MutableSet<String> {
         return hashSetOf(
-                ViewModelArgs::class.java.canonicalName,
+                ViewModelWithArgs::class.java.canonicalName,
                 Argument::class.java.canonicalName
         )
     }
@@ -45,7 +45,7 @@ class ViewModelArgsProcessor : AbstractProcessor() {
         return try {
             ProcessorContext.setup(filer, messager, elementUtils, typeUtils)
 
-            roundEnv.getElementsAnnotatedWith(ViewModelArgs::class.java).forEach {
+            roundEnv.getElementsAnnotatedWith(ViewModelWithArgs::class.java).forEach {
                 BuilderProcessor.process(it)
             }
 

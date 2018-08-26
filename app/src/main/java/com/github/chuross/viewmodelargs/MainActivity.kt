@@ -10,7 +10,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewModel = MainViewModelBuilder("fooo").build(this)
-        Toast.makeText(this, "hoge: ${viewModel.hoge} fuga: ${viewModel.fuga}", Toast.LENGTH_SHORT).show()
+        val viewModel = MainViewModelBuilder("fooo")
+                .fuga(9999)
+                .build(this)
+
+        Toast.makeText(this, "hoge: ${viewModel.hoge}, fuga: ${viewModel.fuga}", Toast.LENGTH_SHORT).show()
     }
 }
