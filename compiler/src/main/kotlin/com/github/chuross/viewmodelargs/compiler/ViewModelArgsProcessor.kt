@@ -2,6 +2,7 @@ package com.github.chuross.viewmodelargs.compiler
 
 import com.github.chuross.viewmodelargs.annotation.Argument
 import com.github.chuross.viewmodelargs.annotation.ViewModelArgs
+import com.github.chuross.viewmodelargs.compiler.processors.BuilderProcessor
 import com.google.auto.service.AutoService
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -41,11 +42,11 @@ class ViewModelArgsProcessor : AbstractProcessor() {
     }
 
     override fun process(annotations: MutableSet<out TypeElement>?, roundEnv: RoundEnvironment): Boolean {
-        return try {
+        try {
             ProcessorContext.setup(filer, messager, elementUtils, typeUtils)
 
             roundEnv.getElementsAnnotatedWith(ViewModelArgs::class.java).forEach {
-
+                BuilderProcessor.process(it)
             }
 
             return true
