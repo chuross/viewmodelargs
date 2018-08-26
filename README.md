@@ -1,4 +1,7 @@
 # ViewModelArgs
+[![](https://jitpack.io/v/chuross/viewmodelargs.svg)](https://jitpack.io/#chuross/viewmodelargs)
+
+
 Annotation Processor to create for Android ViewModel.
 
 This Library provide easy create `androidx.lifecycle.ViewModel` without implement `ViewModelProvider.Factory`.
@@ -18,6 +21,9 @@ repositories {
 ```
 
 2. add the dependency 
+
+[![](https://jitpack.io/v/chuross/viewmodelargs.svg)](https://jitpack.io/#chuross/viewmodelargs)
+
 
 ```gradle
 dependencies {
@@ -54,6 +60,9 @@ class MainActivity : AppCompatActivity() {
         ....
 
         val viewModel = MainViewModelBuilder("fooo").fuga(9999).build(this)
+        // build(this):
+        //   androidx.appcompat.app.AppCompatActivity
+        //     or androidx.fragment.app.Fragment
 
         Toast.makeText(this, "hoge: ${viewModel.hoge} fuga: ${viewModel.fuga}", Toast.LENGTH_SHORT).show() // hoge: fooo, fuga: 9999
     }
