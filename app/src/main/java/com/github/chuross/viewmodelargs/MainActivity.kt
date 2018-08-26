@@ -1,12 +1,16 @@
 package com.github.chuross.viewmodelargs
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val viewModel = MainViewModelBuilder("fooo").build(this)
+        Toast.makeText(this, "hoge: ${viewModel.hoge} fuga: ${viewModel.fuga}", Toast.LENGTH_SHORT).show()
     }
 }

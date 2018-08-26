@@ -24,7 +24,7 @@ class ProcessorContext(
         @Synchronized
         fun getInstance(): ProcessorContext = INSTANCE ?: throw IllegalStateException("nothing setup")
 
-        fun log(message: Any?) = message?.let { getInstance().messager.printMessage(Diagnostic.Kind.NOTE, it.toString()) }
+        fun log(message: Any?) = message?.let { getInstance().messager.printMessage(Diagnostic.Kind.WARNING, it.toString()) }
     }
 
 }

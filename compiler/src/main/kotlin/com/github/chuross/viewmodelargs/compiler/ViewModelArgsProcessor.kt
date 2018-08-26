@@ -42,20 +42,20 @@ class ViewModelArgsProcessor : AbstractProcessor() {
     }
 
     override fun process(annotations: MutableSet<out TypeElement>?, roundEnv: RoundEnvironment): Boolean {
-        try {
+        return try {
             ProcessorContext.setup(filer, messager, elementUtils, typeUtils)
 
             roundEnv.getElementsAnnotatedWith(ViewModelArgs::class.java).forEach {
                 BuilderProcessor.process(it)
             }
 
-            return true
+            true
         } catch (e: Throwable) {
             val stacktrace = StringWriter().also {
                 PrintWriter(it).also { e.printStackTrace(it) }.flush()
             }.toString()
             messager.printMessage(Diagnostic.Kind.ERROR, "MoriRouter:generate:failed:$stacktrace")
-            return false
+            false
         }
     }
 }

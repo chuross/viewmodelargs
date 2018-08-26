@@ -12,6 +12,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}"
     implementation "com.squareup:javapoet:${versions.javapoet}"
     implementation "com.google.auto.service:auto-service:${versions.autoService}"
+    implementation "androidx.annotation:annotation:${versions.androidxCore}"
     kapt "com.google.auto.service:auto-service:${versions.autoService}"
 }
 
