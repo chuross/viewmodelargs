@@ -44,6 +44,8 @@ class MainViewModel : ViewModel() {
 
 use auto generated builder class.
 
+`MainViewModelBuilder` class is auto generated.
+
 ```kotlin
 class MainActivity : AppCompatActivity() {
 
