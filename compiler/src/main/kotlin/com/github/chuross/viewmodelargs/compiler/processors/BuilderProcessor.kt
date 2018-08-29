@@ -20,6 +20,8 @@ object BuilderProcessor {
     fun process(element: Element) {
         if (!element.isViewModelArgs) return
 
+        validate(element)
+
         val typeSpec = TypeSpec.classBuilder(getGeneratedTypeName(element)).also { builder ->
             builder.addModifiers(Modifier.PUBLIC, Modifier.FINAL)
             builder.addJavadoc("This class is auto generated.")
@@ -34,6 +36,13 @@ object BuilderProcessor {
         JavaFile.builder(context.elementUtils.getPackageOf(element).qualifiedName.toString(), typeSpec)
                 .build()
                 .writeTo(context.filer)
+    }
+
+    private fun validate(element: Element) {
+        val context = ProcessorContext.getInstance()
+        if (!context.typeUtils.isSubtype(element.asType(), context.elementUtils.getTypeElement(PackageNames.VIEW_MODEL).asType())) {
+            throw IllegalStateException("@ViewModelArgs only support ${PackageNames.VIEW_MODEL}: ${element.simpleName}")
+        }
     }
 
     private fun argumentFields(element: Element): Iterable<FieldSpec> {
